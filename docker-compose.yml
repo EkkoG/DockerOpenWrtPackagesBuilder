@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  openwrt-luci-build:
+    image: "openwrtorg/sdk:x86_64-19.07.7"
+    container_name: openwrt-luci-build
+    volumes:
+     - ./bin:/home/build/openwrt/bin
+     - ./build.sh:/home/build/openwrt/build.sh
+    command: "./build.sh"
