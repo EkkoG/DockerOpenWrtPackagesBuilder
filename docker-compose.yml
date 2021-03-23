@@ -1,9 +1,28 @@
 version: '3.5'
 services:
-  openwrt-luci-build:
+  openwrt-packages-build:
     image: "openwrtorg/sdk:x86_64-19.07.7"
-    container_name: openwrt-luci-build
+    container_name: openwrt-packages-build
     volumes:
      - ./bin:/home/build/openwrt/bin
+     - ./key-build:/home/build/openwrt/key-build
+     - ./build.sh:/home/build/openwrt/build.sh
+    command: "./build.sh"
+
+  openwrt-packages-build_ar71xx:
+    image: "openwrtorg/sdk:ar71xx-nand-19.07.7"
+    container_name: openwrt-packages-build_ar71xx
+    volumes:
+     - ./bin:/home/build/openwrt/bin
+     - ./key-build:/home/build/openwrt/key-build
+     - ./build.sh:/home/build/openwrt/build.sh
+    command: "./build.sh"
+
+  openwrt-packages-build_r2s:
+    image: "openwrtorg/sdk:rockchip-armv8-21.02-SNAPSHOT"
+    container_name: openwrt-packages-build_r2s
+    volumes:
+     - ./bin:/home/build/openwrt/bin
+     - ./key-build:/home/build/openwrt/key-build
      - ./build.sh:/home/build/openwrt/build.sh
     command: "./build.sh"
